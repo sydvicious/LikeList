@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id "org.springframework.boot" version "2.0.1.RELEASE"
+}
+
+group 'com.sydpolk'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+
+    // Immutables
+    annotationProcessor "org.immutables:value:2.5.5"
+    compileOnly "org.immutables:value:2.5.5"
+
+    // Java SDK for B2
+    implementation 'com.backblaze.b2:b2-sdk-core:3.1.0'
+    implementation 'com.backblaze.b2:b2-sdk-httpclient:3.1.0'
+
+    implementation platform('org.springframework.boot:spring-boot-dependencies:2.2.1.RELEASE')
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation "org.mockito:mockito-core:3.+"
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
+}
+
+bootRun {
+    standardInput = System.in
+    if (project.hasProperty('args')) {
+        args project.args.split(',')
+    }
+}
