@@ -3,7 +3,6 @@ package com.sydpolk.likelist;
 import javafx.util.Pair;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
